@@ -1,12 +1,12 @@
-var scene1 = new Phaser.Class({
+var scene3 = new Phaser.Class({
 
     Extends: Phaser.Scene,
 
     initialize:
 
-    function scene1 ()
+    function scene3 ()
     {
-        Phaser.Scene.call(this, { key: 'scene1' });
+        Phaser.Scene.call(this, { key: 'scene3' });
     },
 
     preload: function ()

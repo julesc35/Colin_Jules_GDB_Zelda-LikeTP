@@ -11,7 +11,8 @@ var config = {
     scene: [
     Assets,
     Audio,
-    Menu]
+    Menu,
+    depart]
   }
 
 var game = new Phaser.Game(config);

@@ -1,8 +1,4 @@
-var enter;
-var text;
-var menuMusic;
-
-    class Menu extends Phaser.Scene{
+   class Menu extends Phaser.Scene{
 
 constructor(){
     super("Menu")
@@ -13,13 +9,13 @@ constructor(){
     create(){
 
         this.add.image(400, 300, 'fond').setScale(0.30);
-        this.add.text(200, 300, 'APPUYEZ SUR ENTRER', { fontFamily: 'SpaceQuest', fontSize: 30}).setOrigin(0.5,0.5);
+        this.add.text(400, 450, 'APPUYEZ SUR ENTRER', { fontFamily: 'SpaceQuest', fontSize: 30}).setOrigin(0.5,0.5);
+        cursors = this.input.keyboard.createCursorKeys();
         enter = this.input.keyboard.addKey('ENTER');
-        //cursors = this.input.keyboard.createCursorKey();
 
         //musique
         menuMusic = this.sound.add('MenuMusic');
-        menuMusic.play({volume: 0.3, loop: true});
+        menuMusic.play({volume: 0.7, loop: true});
         }
 
     update(){
@@ -30,7 +26,7 @@ constructor(){
                 delay: 5000,
                 callback: ()=>{
                 menuMusic.mute = true;
-                this.scene.start("scene2");
+                this.scene.start("depart");
                 },
             });
         }

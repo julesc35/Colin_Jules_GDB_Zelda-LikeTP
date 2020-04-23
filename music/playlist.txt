@@ -1,3 +1,6 @@
 playlist:
 
 MenuMusic: 90's Flav - Call me
+donjon: panda-dub-the-lost-ship-10-die-brucke
+depart: Panda Dub - The Lost Ship - 5 - Planet pillow
+outro: panda-dub-horizons-02-la-2eme-lune(EditPerso)

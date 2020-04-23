@@ -1,7 +1,13 @@
 //initialisation des varriables du menu
 var text;
-var menuMusic;
 var cursors;
+
+//musiques
+
+var menuMusic;
+var departMusic;
+var donjonMusic
+var outroMusic;
 
 //touches
 var enter;

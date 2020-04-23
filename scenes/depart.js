@@ -8,6 +8,11 @@ class depart extends Phaser.Scene{
     preload(){}
 
     create(){
+    //musique
+
+        departMusic = this.sound.add('depart');
+        departMusic.play({volume: 0.2, loop: true});
+
     //creation des touches
     //ramasser objets
     pressE = this.input.keyboard.addKey('E');

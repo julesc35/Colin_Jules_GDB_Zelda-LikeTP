@@ -128,8 +128,10 @@ class Assets extends Phaser.Scene {
         this.load.image('robot2cote','assets/robot2cote.png');
 
         //joueur
-        this.load.image('joueur','assets/player_face.png');
-        this.load.spritesheet('courseJ','assets/player_course.png', {frameWidth: 19, frameHeight: 32});
+        this.load.spritesheet('joueur','assets/player_face.png', {frameWidth: 106, frameHeight: 128});
+        this.load.spritesheet('course_droite','assets/player_profilsprite.png', {frameWidth: 106, frameHeight: 128});
+        this.load.spritesheet('course_face','assets/player_facemarche.png', {frameWidth: 106, frameHeight: 128});
+        this.load.spritesheet('course_dos','assets/player_dossprite.png', {frameWidth: 106, frameHeight: 128});
 
 	}
 

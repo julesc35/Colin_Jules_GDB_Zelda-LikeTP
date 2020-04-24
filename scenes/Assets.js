@@ -64,22 +64,47 @@ var prendre;
 
 //déclaration des items/vie
 var nbrvie = 4;
-var vie;
+var text_vie;
 var vieup1;
 var vieup2;
 var vieup3;
 var soin;
 
+var pistolet_text;
+var pistolet_inv = 0;
+var pistolet;
+
+var munition_text;
+var munition_inv = 0;
+var munition;
+
+var projectile;
+
+var matraque_text;
+var matraque_inv = 0;
+var matraque;
+
+var essence_text;
+var essence_inv = 0;
 var essence;
-var essencerecup = 0;
+
+var lampe_text;
+var lampe_inv = 0;
+var lampe;
 
 //declaration de la narration
+var arrivee =0;
+var text_arrivee;
+var essence_manquante;
 
-var text_arrivée;
+var arrivee_donjon = 0;
 var text_donjon;
+
 var text_essence;
+
 var text_matraque;
 var text_pistolet;
+
 var text_sortieDJ;
 
 class Assets extends Phaser.Scene {
@@ -91,11 +116,16 @@ class Assets extends Phaser.Scene {
 
 	preload(){
 
-		//fond
+		//fond/terrain
 
         this.load.image('fond','assets/fondintro.png');
         this.load.image('terrain','assets/terrain.png');
         this.load.image('donjon','assets/terrain_donjon.png');
+        this.load.image('collide','assets/mur_invisible.png');
+        this.load.image('collideC','assets/mur_invisible_cote.png');
+        this.load.image('entdj', 'assets/entree_donjon.png');
+        this.load.image('murhautdj', 'assets/donjon_mur_haut.png');
+        this.load.image('murcotdj', 'assets/donjon_mur_coté.png');
 
         //éléments de décors
         this.load.image('fusee','assets/fusée.png');
@@ -108,10 +138,9 @@ class Assets extends Phaser.Scene {
         this.load.image('rocheP','assets/petit_roché.png');
         this.load.image('trouP','assets/petit_trou.png');
         this.load.image('trouPP','assets/petit_trou2.png');
-        this.load.image('collide','assets/mur_invisible.png');
-        this.load.image('collideC','assets/mur_invisible_cote.png');
         this.load.image('torcheext','assets/Torche_extérieur.png');
         this.load.image('torcheint','assets/Torche_intérieur.png');
+
 
 		// items
 
@@ -119,6 +148,9 @@ class Assets extends Phaser.Scene {
         this.load.image('soins','assets/boite_soins.png');
         this.load.image('pistolet','assets/pistolet.png');
         this.load.image('matraque','assets/matraque.png');
+        this.load.image('lampe','assets/lampe.png');
+        this.load.image('PV','assets/Vie.png');
+        this.load.image('munition','assets/munition.png');
 
 		//ennemis
 
@@ -126,6 +158,7 @@ class Assets extends Phaser.Scene {
         this.load.image('robot1cote','assets/robot1cote.png');
         this.load.image('robot2dos','assets/robot2dos.png');
         this.load.image('robot2cote','assets/robot2cote.png');
+        this.load.image('pique','assets/piques.png');
 
         //joueur
         this.load.spritesheet('joueur','assets/player_face.png', {frameWidth: 106, frameHeight: 128});

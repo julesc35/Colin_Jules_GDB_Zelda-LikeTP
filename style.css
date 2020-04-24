@@ -3,3 +3,8 @@
 	src: url('font/SpaceQuest.ttf');
 	font-weight: normal;
 }
+@font-face {
+	font-family: NebulousRegular;
+	src: url('font/NebulousRegular.ttf');
+	font-weight: normal;
+}

@@ -43,9 +43,9 @@ if (pistolet_inv == 1) {pistolet_text.setText('X 1')};
 
 // récupération de la matraque
 
-    this.add.image(280, 5, 'matraque').setScale(0.5).setOrigin(0,0);
+/*    this.add.image(280, 5, 'matraque').setScale(0.5).setOrigin(0,0);
     matraque_text = this.add.text(305, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (matraque_inv == 1) {matraque_text.setText('X 1')};
+if (matraque_inv == 1) {matraque_text.setText('X 1')};*/
 
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setScale(0.5).setOrigin(0,0);
@@ -58,7 +58,7 @@ if (essence_inv == 1) {essence_text.setText('X 1')};
 if (lampe_inv == 1) {lampe_text.setText('X 1')};
 
 //munitions
-    this.add.image(580, 5, 'munition').setScale(0.4).setOrigin(0,0);
+/*    this.add.image(580, 5, 'munition').setScale(0.4).setOrigin(0,0);
     munition_text = this.add.text(610, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
 if (munition_inv == 1) {munition_text.setText('X 1')};
 if (munition_inv == 2) {munition_text.setText('X 2')};
@@ -68,7 +68,7 @@ if (munition_inv == 5) {munition_text.setText('X 5')};
 if (munition_inv == 6) {munition_text.setText('X 6')};
 if (munition_inv == 7) {munition_text.setText('X 7')};
 if (munition_inv == 8) {munition_text.setText('X 8')};
-if (munition_inv == 9) {munition_text.setText('X 9')};
+if (munition_inv == 9) {munition_text.setText('X 9')};*/
 
 
     ///////creation des touches\\\\\\
@@ -77,16 +77,22 @@ if (munition_inv == 9) {munition_text.setText('X 9')};
     pressE = this.input.keyboard.addKey('E');
 
     //utiliser la matraque
-    pressF = this.input.keyboard.addKey('F');
+   // pressF = this.input.keyboard.addKey('F');
 
     //utiliser le pistolet
     pressA = this.input.keyboard.addKey('A');
 
 
     ////////arrivée du joueur\\\\\\\\\\
-
+if(spawn == "droite"){
     player = this.physics.add.sprite(360, 550, 'joueur').setScale(0.5).setDepth(1);
-
+}
+if(spawn == "gauche"){
+    player = this.physics.add.sprite(792, 300, 'joueur').setScale(0.5).setDepth(1);
+}
+if(spawn == "rien"){
+    player = this.physics.add.sprite(360, 550, 'joueur').setScale(0.5).setDepth(1);
+}
     //////////collision du joueur au bordures\\\\\\\\\\
 
     player.setCollideWorldBounds(true);
@@ -98,25 +104,25 @@ if (munition_inv == 9) {munition_text.setText('X 9')};
     this.anims.create({
       key:'anim_joueur_droite',
       frames: this.anims.generateFrameNumbers('course_droite', {start: 0, end: 1}),
-      frameRate: 8,
+      frameRate: 4,
       repeat: -1
     });
     this.anims.create({
       key:'anim_joueur_bas',
       frames: this.anims.generateFrameNumbers('course_face', {start: 0, end: 1}),
-      frameRate: 8,
+      frameRate: 4,
       repeat: -1
     });
     this.anims.create({
       key:'anim_joueur_haut',
       frames: this.anims.generateFrameNumbers('course_dos', {start: 0, end: 1}),
-      frameRate: 8,
+      frameRate: 4,
       repeat: -1
     });
     this.anims.create({
       key:'anim_joueur_arret',
       frames: this.anims.generateFrameNumbers('joueur', {start: 0, end: 1}),
-      frameRate: 8,
+      frameRate: 4,
       repeat: -1
     });
 
@@ -217,6 +223,12 @@ this.physics.add.collider(player,fusee);
         },
         loop: false
     });
-        //this.scene.start("");
+
+    /////////changer de scene\\\\\\\\\\\\
+
+        if (player.x>757 && player.y>350 && player.y<470) {
+      spawn = "gauche";
+      this.scene.start("avdonjon");
+    }
     }
 }

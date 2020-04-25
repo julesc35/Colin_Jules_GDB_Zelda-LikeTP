@@ -5,14 +5,15 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0},
-            debug: true
+            debug: false
         }
     },
     scene: [
     Assets,
     Audio,
     Menu,
-    depart]
+    depart,
+    avdonjon]
   }
 
 var game = new Phaser.Game(config);

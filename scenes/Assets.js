@@ -18,7 +18,7 @@ var pressA;
 // déclaration joueur et ennemis
 
 var player;
-var spawn = "nul";
+var spawn = "rien";
 
 var robotvie = 1;
 var robot;
@@ -40,6 +40,8 @@ var pique7;
 var pique8;
 
 //déclaration des objets de décors
+var entredj;
+
 var fusee;
 
 var cratere;
@@ -97,6 +99,9 @@ var arrivee =0;
 var text_arrivee;
 var essence_manquante;
 
+var arrivee_avdonjon = 0;
+var text_avdonjon;
+
 var arrivee_donjon = 0;
 var text_donjon;
 
@@ -123,6 +128,7 @@ class Assets extends Phaser.Scene {
         this.load.image('donjon','assets/terrain_donjon.png');
         this.load.image('collide','assets/mur_invisible.png');
         this.load.image('collideC','assets/mur_invisible_cote.png');
+        this.load.image('blocinvi', 'assets/mur_invisible2.png');
         this.load.image('entdj', 'assets/entree_donjon.png');
         this.load.image('murhautdj', 'assets/donjon_mur_haut.png');
         this.load.image('murcotdj', 'assets/donjon_mur_coté.png');

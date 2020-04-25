@@ -32,7 +32,7 @@ if (nbrvie == 7) {text_vie.setText('X 7');}
 
     this.add.image(380, 5, 'pistolet').setDepth(5).setScale(0.75).setOrigin(0,0);
     pistolet_text = this.add.text(420, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (pistolet_inv == 1) {pistolet_text.setText('X 1')};
+if (nbrpistolet == 1) {pistolet_text.setText('X 1')};
 
 // récupération de la matraque
 
@@ -43,12 +43,12 @@ if (matraque_inv == 1) {matraque_text.setText('X 1')};*/
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setDepth(5).setScale(0.5).setOrigin(0,0);
     essence_text = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (essence_inv == 1) {essence_text.setText('X 1')};
+if (nbrEssence == 1) {essence_text.setText('X 1')};
 
 // lampe
     this.add.image(80, 5, 'lampe').setDepth(5).setScale(0.5).setOrigin(0,0);
     lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (lampe_inv == 1) {lampe_text.setText('X 1')};
+if (nbrlampe == 1) {lampe_text.setText('X 1')};
 
 //munitions
 /*    this.add.image(580, 5, 'munition').setDepth(5).setScale(0.4).setOrigin(0,0);

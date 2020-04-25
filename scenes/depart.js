@@ -39,7 +39,7 @@ class depart extends Phaser.Scene{
 
     this.add.image(380, 5, 'pistolet').setScale(0.75).setOrigin(0,0);
     pistolet_text = this.add.text(420, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (pistolet_inv == 1) {pistolet_text.setText('X 1')};
+if (nbrpistolet == 1) {pistolet_text.setText('X 1')};
 
 // récupération de la matraque
 
@@ -50,12 +50,12 @@ if (matraque_inv == 1) {matraque_text.setText('X 1')};*/
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setScale(0.5).setOrigin(0,0);
     essence_text = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (essence_inv == 1) {essence_text.setText('X 1')};
+if (nbrEssence == 1) {essence_text.setText('X 1')};
 
 // lampe
     this.add.image(80, 5, 'lampe').setScale(0.5).setOrigin(0,0);
     lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (lampe_inv == 1) {lampe_text.setText('X 1')};
+if (nbrlampe == 1) {lampe_text.setText('X 1')};
 
 //munitions
 /*    this.add.image(580, 5, 'munition').setScale(0.4).setOrigin(0,0);
@@ -70,11 +70,15 @@ if (munition_inv == 7) {munition_text.setText('X 7')};
 if (munition_inv == 8) {munition_text.setText('X 8')};
 if (munition_inv == 9) {munition_text.setText('X 9')};*/
 
-if (vie1prise == 0) {vieup1 = this.physics.add.image(515,220,'soins').setScale(0.5).setDepth(1);}
+//////placement des items\\\\\
+
+if (vie1prise == 0) {
+    vieup1 = this.physics.add.image(515,220,'soins').setScale(0.5).setDepth(1);
+}
+if (pistoletpris == 0)
+    pistoletsup = this.physics.add.image(300,400,'pistolet').setScale(0.75).setDepth(1);
     ///////creation des touches\\\\\\
 
-    //ramasser objets
-    pressE = this.input.keyboard.addKey('E');
 
     //utiliser la matraque
    // pressF = this.input.keyboard.addKey('F');
@@ -149,16 +153,16 @@ torcheext.create(136, 180, 'torcheext').setDepth(1);
 
 //placement des objets
 fusee = this.physics.add.staticGroup();
-fusee.create(190,740, 'fusee').setOrigin(0.5,1.45).setSize(200,1).setDepth(2);
+fusee.create(160,740, 'fusee').setOrigin(0.5,1.45).setSize(200,1).setDepth(2);
 
 caisseB = this.physics.add.staticGroup();
-caisseB.create(280 ,605 ,'caisseB').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
+caisseB.create(270 ,605 ,'caisseB').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
 
 caisseV = this.physics.add.staticGroup();
-caisseV.create(320,605 ,'caisseV').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
+caisseV.create(310,605 ,'caisseV').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
 
 caisseR = this.physics.add.staticGroup();
-caisseR.create(280 ,460 ,'caisseR').setOrigin(0.5,0.5).setSize(40,1);
+caisseR.create(270 ,460 ,'caisseR').setOrigin(0.5,0.5).setSize(40,1);
 
 trouP = this.physics.add.staticGroup();
 trouP.create(470, 440, 'trouP');
@@ -167,13 +171,18 @@ trouPP = this.physics.add.staticGroup();
 trouPP.create(260, 143, 'trouPP');
 
 rocheG= this.physics.add.staticGroup();
-rocheG.create(515,280, 'rocheG').setScale(0.75).setOrigin(0.65,1.37).setSize(150,15).setDepth(2);
+rocheG.create(515,280, 'rocheG').setScale(0.75).setOrigin(0.65,1.38).setSize(150,15).setDepth(2);
 
 rocheP= this.physics.add.staticGroup();
 rocheP.create(480,285, 'rocheP');
 rocheP.create(607,240, 'rocheP');
 
-text_vie = this.add.text(400,580,'je sais pas ce que ça fait là mais ca me sera bien utile',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+////////text de récupération des items\\\\\\\\
+
+pistolet_text = this.add.text(400,580,'ca fera pas de mal d\'avoir de quoi me défendre, on sait jamais',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+text_vie = this.add.text(400,580,'je sais pas ce que ça fait là mais ca me sera bien utile (vie+1)',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+text_pas_essence = this.add.text(400, 580,'je n\'ai toujours pas l\'essence, je devrais y retourner pour chercher',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+
 ////////collisions\\\\\\\\\\\
 
 this.physics.add.collider(player,mur_invisible);
@@ -182,7 +191,8 @@ this.physics.add.collider(player,caisseV);
 this.physics.add.collider(player,caisseB);
 this.physics.add.collider(player,rocheG);
 this.physics.add.collider(player,fusee);
-this.physics.add.collider(player,vieup1, hitSoins1, null, this)
+this.physics.add.collider(player,vieup1, hitSoins1, null, this);
+this.physics.add.collider(player,pistoletsup, hitGun, null, this)
 
     }
 
@@ -228,25 +238,64 @@ this.physics.add.collider(player,vieup1, hitSoins1, null, this)
 
     /////////changer de scene\\\\\\\\\\\\
 
+//scene avant le donjon
+
         if (player.x>757 && player.y>0 && player.y<600) {
       spawn = "gauche";
       this.scene.start("avdonjon");
     }
+
+//scene finale
+
+    if(player.x>50 && player.x<160 && player.y>480 && player.y<600){
+        if(nbrEssence<1){
+        text_pas_essence.setVisible(true);
+        this.time.addEvent({
+            delay: 4000,
+            callback: ()=>{
+                text_pas_essence.setVisible(false);
+            },
+            loop: false
+        });
+        }
+        if(nbrEssence>= 1){
+            this.scene.start("outro");
+        }
     }
+
+
+    }
+
 }
 function hitSoins1(player, vieup1){
     vieup1.destroy(true);
     vie1prise=1;
     nbrvie+=1;
+
         text_vie.setVisible(true);
     this.time.addEvent({
-    delay: 5000,
+    delay: 3000,
     callback: ()=>{
-    text_vie.setSize(false);
+    text_vie.setVisible(false);
         },
     loop: false
     });
 }
-function hitGun(player, pistolet){
+function hitGun(player, pistoletsup){
+pistoletsup.destroy(true);
+pistoletpris =1;
+nbrpistolet +=1;
+
+        pistolet_text.setVisible(true);
+    this.time.addEvent({
+    delay: 3000,
+    callback: ()=>{
+    pistolet_text.setVisible(false);
+        },
+    loop: false
+    });
+}
+
+function shoot(player, pistoletpris){
 
 }

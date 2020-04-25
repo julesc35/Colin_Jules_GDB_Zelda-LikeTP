@@ -76,7 +76,9 @@ var vie3prise = 0;
 var soin;
 
 var pistolet_text;
-var pistolet_inv = 0;
+var nbrpistolet =0;
+var pistoletsup;
+var pistoletpris = 0;
 var pistolet;
 
 var munition_text;
@@ -87,14 +89,22 @@ var projectile;
 
 var matraque_text;
 var matraque_inv = 0;
+var pistoletpris = 0;
 var matraque;
 
 var essence_text;
-var essence_inv = 0;
+var text_pas_essence;
+var nbrEssence =0;
+var essencesup;
+var essencepris = 0;
 var essence;
 
+
 var lampe_text;
-var lampe_inv = 0;
+var text_pas_lampe;
+var nbrlampe =0;
+var lampesup;
+var lampepris = 0;
 var lampe;
 
 //declaration de la narration
@@ -108,10 +118,6 @@ var text_avdonjon;
 var arrivee_donjon = 0;
 var text_donjon;
 
-var text_essence;
-
-var text_matraque;
-var text_pistolet;
 
 var text_sortieDJ;
 

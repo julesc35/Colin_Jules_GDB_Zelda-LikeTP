@@ -68,8 +68,11 @@ var prendre;
 var nbrvie = 4;
 var text_vie;
 var vieup1;
+var vie1prise = 0;
 var vieup2;
+var vie2prise = 0;
 var vieup3;
+var vie3prise = 0;
 var soin;
 
 var pistolet_text;

@@ -27,13 +27,13 @@ class depart extends Phaser.Scene{
 //points de vie
     this.add.image(500,5, 'PV').setScale(0.35).setOrigin(0,0);
     text_vie = this.add.text(540,10,'X 0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (nbrvie == 1) {text_vie.setText('X 1');}
-if (nbrvie == 2) {text_vie.setText('X 2');}
-if (nbrvie == 3) {text_vie.setText('X 3');}
-if (nbrvie == 4) {text_vie.setText('X 4');}
-if (nbrvie == 5) {text_vie.setText('X 5');}
-if (nbrvie == 6) {text_vie.setText('X 6');}
-if (nbrvie == 7) {text_vie.setText('X 7');}
+        if (nbrvie == 1) {text_vie.setText('X 1');}
+        if (nbrvie == 2) {text_vie.setText('X 2');}
+        if (nbrvie == 3) {text_vie.setText('X 3');}
+        if (nbrvie == 4) {text_vie.setText('X 4');}
+        if (nbrvie == 5) {text_vie.setText('X 5');}
+        if (nbrvie == 6) {text_vie.setText('X 6');}
+        if (nbrvie == 7) {text_vie.setText('X 7');}
 
 //récupération du pistolet
 
@@ -70,7 +70,7 @@ if (munition_inv == 7) {munition_text.setText('X 7')};
 if (munition_inv == 8) {munition_text.setText('X 8')};
 if (munition_inv == 9) {munition_text.setText('X 9')};*/
 
-
+if (vie1prise == 0) {vieup1 = this.physics.add.image(515,220,'soins').setScale(0.5).setDepth(1);}
     ///////creation des touches\\\\\\
 
     //ramasser objets
@@ -167,12 +167,13 @@ trouPP = this.physics.add.staticGroup();
 trouPP.create(260, 143, 'trouPP');
 
 rocheG= this.physics.add.staticGroup();
-rocheG.create(515,280, 'rocheG').setScale(0.75).setOrigin(0.65,1.37).setSize(150,15).setDepth(1);
+rocheG.create(515,280, 'rocheG').setScale(0.75).setOrigin(0.65,1.37).setSize(150,15).setDepth(2);
 
 rocheP= this.physics.add.staticGroup();
 rocheP.create(480,285, 'rocheP');
 rocheP.create(607,240, 'rocheP');
 
+text_vie = this.add.text(400,580,'je sais pas ce que ça fait là mais ca me sera bien utile',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
 ////////collisions\\\\\\\\\\\
 
 this.physics.add.collider(player,mur_invisible);
@@ -181,6 +182,7 @@ this.physics.add.collider(player,caisseV);
 this.physics.add.collider(player,caisseB);
 this.physics.add.collider(player,rocheG);
 this.physics.add.collider(player,fusee);
+this.physics.add.collider(player,vieup1, hitSoins1, null, this)
 
     }
 
@@ -226,9 +228,25 @@ this.physics.add.collider(player,fusee);
 
     /////////changer de scene\\\\\\\\\\\\
 
-        if (player.x>757 && player.y>350 && player.y<470) {
+        if (player.x>757 && player.y>0 && player.y<600) {
       spawn = "gauche";
       this.scene.start("avdonjon");
     }
     }
+}
+function hitSoins1(player, vieup1){
+    vieup1.destroy(true);
+    vie1prise=1;
+    nbrvie+=1;
+        text_vie.setVisible(true);
+    this.time.addEvent({
+    delay: 5000,
+    callback: ()=>{
+    text_vie.setSize(false);
+        },
+    loop: false
+    });
+}
+function hitGun(player, pistolet){
+
 }

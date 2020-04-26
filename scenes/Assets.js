@@ -173,10 +173,8 @@ class Assets extends Phaser.Scene {
         this.load.image('soins','assets/boite_soins.png');
         this.load.image('pistolet','assets/pistolet.png');
         this.load.image('telecommande','assets/telecommande_mystérieuse.png');
-        this.load.image('matraque','assets/matraque.png');
         this.load.image('lampe','assets/lampe.png');
         this.load.image('PV','assets/Vie.png');
-        this.load.image('munition','assets/munition.png');
 
 		//ennemis
         this.load.spritesheet('robot_face','assets/robot1face.png', {frameWidth: 72, frameHeight: 72});

@@ -70,10 +70,10 @@ if (telecpris == 0){
 
     ////////arrivée du joueur\\\\\\\\\\
 if(spawn == "droite"){
-    player = this.physics.add.sprite(760, 300, 'joueur').setScale(0.5).setDepth(1);
+    player = this.physics.add.sprite(740, 300, 'joueur').setScale(0.5).setDepth(1);
 }
 if(spawn == "gauche"){
-    player = this.physics.add.sprite(60, 300, 'joueur').setScale(0.5).setDepth(1);
+    player = this.physics.add.sprite(80, 300, 'joueur').setScale(0.5).setDepth(1);
 }
 if(spawn == "rien"){
     player = this.physics.add.sprite(360, 550, 'joueur').setScale(0.5).setDepth(1);

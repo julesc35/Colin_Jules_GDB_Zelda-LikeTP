@@ -59,7 +59,7 @@ if (vie1prise == 0) {
 
     ////////arrivée du joueur\\\\\\\\\\
 if(spawn == "droite"){
-    player = this.physics.add.sprite(730, 300, 'joueur').setScale(0.5).setDepth(1);
+    player = this.physics.add.sprite(740, 300, 'joueur').setScale(0.5).setDepth(1);
 }
 if(spawn == "gauche"){
     player = this.physics.add.sprite(80, 300, 'joueur').setScale(0.5).setDepth(1);

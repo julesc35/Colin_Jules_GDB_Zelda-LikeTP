@@ -13,7 +13,8 @@ var config = {
     Audio,
     Menu,
     depart,
-    avdonjon]
+    avdonjon,
+    donjon]
   }
 
 var game = new Phaser.Game(config);

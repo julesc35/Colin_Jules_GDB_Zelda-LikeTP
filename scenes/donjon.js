@@ -1,6 +1,6 @@
-class avdonjon extends Phaser.Scene{
+class donjon extends Phaser.Scene{
     constructor() {
-        super('avdonjon');
+        super('donjon');
 
     }
     init(){}
@@ -29,11 +29,6 @@ if (nbrvie == 7) {text_vie.setText('X 7');}
     pistolet_text = this.add.text(420, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
 if (pistolet_inv == 1) {pistolet_text.setText('X 1')};
 
-// récupération de la matraque
-
-    this.add.image(280, 5, 'matraque').setScale(0.5).setOrigin(0,0);
-    matraque_text = this.add.text(305, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (matraque_inv == 1) {matraque_text.setText('X 1')};
 
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setScale(0.5).setOrigin(0,0);
@@ -45,35 +40,18 @@ if (essence_inv == 1) {essence_text.setText('X 1')};
     lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
 if (lampe_inv == 1) {lampe_text.setText('X 1')};
 
-//munitions
-    this.add.image(580, 5, 'munition').setScale(0.4).setOrigin(0,0);
-    munition_text = this.add.text(610, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (munition_inv == 1) {munition_text.setText('X 1')};
-if (munition_inv == 2) {munition_text.setText('X 2')};
-if (munition_inv == 3) {munition_text.setText('X 3')};
-if (munition_inv == 4) {munition_text.setText('X 4')};
-if (munition_inv == 5) {munition_text.setText('X 5')};
-if (munition_inv == 6) {munition_text.setText('X 6')};
-if (munition_inv == 7) {munition_text.setText('X 7')};
-if (munition_inv == 8) {munition_text.setText('X 8')};
-if (munition_inv == 9) {munition_text.setText('X 9')};
-
-
-    ///////creation des touches\\\\\\
-
-    //ramasser objets
-    pressE = this.input.keyboard.addKey('E');
-
-    //utiliser la matraque
-    pressF = this.input.keyboard.addKey('F');
-
-    //utiliser le pistolet
-    pressA = this.input.keyboard.addKey('A');
 
 
     ////////arrivée du joueur\\\\\\\\\\
-
+if(spawn == "droite"){
+    player = this.physics.add.sprite(760, 300, 'joueur').setScale(0.5).setDepth(1);
+}
+if(spawn == "gauche"){
+    player = this.physics.add.sprite(60, 300, 'joueur').setScale(0.5).setDepth(1);
+}
+if(spawn == "rien"){
     player = this.physics.add.sprite(360, 550, 'joueur').setScale(0.5).setDepth(1);
+}
 
     //////////collision du joueur au bordures\\\\\\\\\\
 
@@ -127,17 +105,7 @@ torcheext.create(740, 375, 'torcheext').setDepth(1);
 torcheext.create(136, 180, 'torcheext').setDepth(1);
 
 //placement des objets
-fusee = this.physics.add.staticGroup();
-fusee.create(190,740, 'fusee').setOrigin(0.5,1.45).setSize(200,1).setDepth(2);
 
-caisseB = this.physics.add.staticGroup();
-caisseB.create(280 ,605 ,'caisseB').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
-
-caisseV = this.physics.add.staticGroup();
-caisseV.create(320,605 ,'caisseV').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
-
-caisseR = this.physics.add.staticGroup();
-caisseR.create(280 ,460 ,'caisseR').setOrigin(0.5,0.5).setSize(40,1);
 
 trouP = this.physics.add.staticGroup();
 trouP.create(470, 440, 'trouP');
@@ -155,11 +123,7 @@ rocheP.create(607,240, 'rocheP');
 ////////collisions\\\\\\\\\\\
 
 this.physics.add.collider(player,mur_invisible);
-this.physics.add.collider(player,caisseR);
-this.physics.add.collider(player,caisseV);
-this.physics.add.collider(player,caisseB);
-this.physics.add.collider(player,rocheG);
-this.physics.add.collider(player,fusee);
+
 
     }
 

@@ -15,6 +15,15 @@ class avdonjon extends Phaser.Scene{
     //lieux visité
     arrivee_avdonjon = 1;
 
+//nombre d'ennemis
+
+nbrrobot = 1
+
+text_pas_lampe = this.add.text(400, 580,'je n\'ai toujours pas la lampe, je devrais retourner la chercher et trouver de quoi désactiver ces robots',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+lampe_text = this.add.text(400, 580,'ca y est, je vais pouvoir voir entrer',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+telec_text = this.add.text(400, 580,'étrange, cette telecommande semble avoir désactivé ces robots',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+
+
     ///////// ATH \\\\\\\\
 
 //points de vie
@@ -28,17 +37,7 @@ if (nbrvie == 5) {text_vie.setText('X 5');}
 if (nbrvie == 6) {text_vie.setText('X 6');}
 if (nbrvie == 7) {text_vie.setText('X 7');}
 
-//récupération du pistolet
 
-    this.add.image(380, 5, 'pistolet').setDepth(5).setScale(0.75).setOrigin(0,0);
-    pistolet_text = this.add.text(420, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (nbrpistolet == 1) {pistolet_text.setText('X 1')};
-
-// récupération de la matraque
-
-/*    this.add.image(280, 5, 'matraque').setDepth(5).setScale(0.5).setOrigin(0,0);
-    matraque_text = this.add.text(305, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (matraque_inv == 1) {matraque_text.setText('X 1')};*/
 
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setDepth(5).setScale(0.5).setOrigin(0,0);
@@ -50,38 +49,31 @@ if (nbrEssence == 1) {essence_text.setText('X 1')};
     lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
 if (nbrlampe == 1) {lampe_text.setText('X 1')};
 
-//munitions
-/*    this.add.image(580, 5, 'munition').setDepth(5).setScale(0.4).setOrigin(0,0);
-    munition_text = this.add.text(610, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (munition_inv == 1) {munition_text.setText('X 1')};
-if (munition_inv == 2) {munition_text.setText('X 2')};
-if (munition_inv == 3) {munition_text.setText('X 3')};
-if (munition_inv == 4) {munition_text.setText('X 4')};
-if (munition_inv == 5) {munition_text.setText('X 5')};
-if (munition_inv == 6) {munition_text.setText('X 6')};
-if (munition_inv == 7) {munition_text.setText('X 7')};
-if (munition_inv == 8) {munition_text.setText('X 8')};
-if (munition_inv == 9) {munition_text.setText('X 9')};*/
 
 
-    ///////creation des touches\\\\\\
+//////placement des items \\\\\\
 
-    //ramasser objets
-    pressE = this.input.keyboard.addKey('E');
+if (vie2prise == 0) {
+    vieup2 = this.physics.add.image(420,220,'soins').setScale(0.5).setDepth(1);
+}
+if (vie3prise == 0) {
+    vieup3 = this.physics.add.image(515,220,'soins').setScale(0.5).setDepth(1);
+}
+if (lampepris == 0){
+    lampesup = this.physics.add.image(600,320,'lampe').setScale(0.45).setDepth(1);
+}
+if (telecpris == 0){
+    telecsup = this.physics.add.image(200,190,'telecommande').setScale(0.25).setDepth(1);
+}
 
-    //utiliser la matraque
-    //pressF = this.input.keyboard.addKey('F');
-
-    //utiliser le pistolet
-    pressA = this.input.keyboard.addKey('A');
 
 
     ////////arrivée du joueur\\\\\\\\\\
 if(spawn == "droite"){
-    player = this.physics.add.sprite(792, 300, 'joueur').setScale(0.5).setDepth(1);
+    player = this.physics.add.sprite(760, 300, 'joueur').setScale(0.5).setDepth(1);
 }
 if(spawn == "gauche"){
-    player = this.physics.add.sprite(8, 300, 'joueur').setScale(0.5).setDepth(1);
+    player = this.physics.add.sprite(60, 300, 'joueur').setScale(0.5).setDepth(1);
 }
 if(spawn == "rien"){
     player = this.physics.add.sprite(360, 550, 'joueur').setScale(0.5).setDepth(1);
@@ -126,12 +118,12 @@ if(spawn == "rien"){
 
        this.add.image(400,300,'terrain');
        mur_invisible = this.physics.add.staticGroup();
-       mur_invisible.create(400, 2, 'collide').setVisible(false).setScale(0.15, 0.15); 
-       mur_invisible.create(2, 645, 'collide').setVisible(false).setScale(0.15, 0.15); 
-       mur_invisible.create(0, 350, 'collideC').setVisible(false).setScale(0.1, 0.15); 
-       mur_invisible.create(845, 450, 'collideC').setVisible(false).setScale(0.1, 0.15); 
-       mur_invisible.create(920,0, 'blocinvi').setVisible(false).setScale(0.1, 0.05);
-       mur_invisible.create(900,825, 'blocinvi').setVisible(false).setScale(0.1, 0.15);
+       mur_invisible.create(400, -30, 'collide').setVisible(false).setScale(0.03, 0.15); 
+       mur_invisible.create(2, 645, 'collide').setVisible(false).setScale(0.03, 0.15); 
+       mur_invisible.create(-40, 350, 'collideC').setVisible(false).setScale(0.05, 0.15); 
+       mur_invisible.create(845, 450, 'collideC').setVisible(false).setScale(0.03, 0.15); 
+       mur_invisible.create(945,0, 'blocinvi').setVisible(false).setScale(0.1, 0.05);
+       mur_invisible.create(900,800, 'blocinvi').setVisible(false).setScale(0.1, 0.15);
 
 
 entredj = this.physics.add.staticGroup()
@@ -139,36 +131,62 @@ entredj.create(770, 300,'entdj').setDepth(1).setScale(0.35);
        //placement des torches
 
 torcheext = this.physics.add.staticGroup()
-torcheext.create(715, 115, 'torcheext').setDepth(1);
+torcheext.create(715, 115, 'torcheext').setDepth(2);
 torcheext.create(710, 350, 'torcheext').setDepth(1);
 torcheext.create(136, 500, 'torcheext').setDepth(1); 
 
 //placement des objets
 cratere = this.physics.add.staticGroup()
-cratere.create(238, 230, 'cratere').setDepth(1);
+cratere.create(220, 230, 'cratere').setDepth(1).setSize(160, 10).setOrigin(0.5,1.25);
+cratere.create(550,360, 'cratere').setDepth(1).setSize(160, 10).setOrigin(0.5,1.25);
+cratere.create(600, 120, 'cratere').setDepth(1).setSize(160, 10).setOrigin(0.5,1.25);
 
 trouP = this.physics.add.staticGroup();
 trouP.create(95, 350, 'trouP').setFlipX(true);
 trouP.create(436, 502, 'trouP');
 
-/*trouPP = this.physics.add.staticGroup();
-trouPP.create(260, 143, 'trouPP');*/
+trouPP = this.physics.add.staticGroup();
+trouPP.create(260, 143, 'trouPP');
 
 rocheM = this.physics.add.staticGroup();
-rocheM.create(480, 180, 'rocheM').setDepth(1);
+rocheM.create(480, 200, 'rocheM').setDepth(1).setSize(85, 10).setOrigin(0.55, 1.30);
+rocheM.create(260, 560, 'rocheM').setDepth(1).setSize(85, 10).setOrigin(0.55, 1.30);
 
 rocheP= this.physics.add.staticGroup();
 rocheP.create(175,150, 'rocheP').setFlipX(true);
 rocheP.create(607,450, 'rocheP');
 
+
+///////////ennemis\\\\\\\\\\\\\
+//robot 1
+    robot = Phaser.Math.Between(1,4);
+    if(robot == 1) {robot1 = this.physics.add.sprite(400, 90, 'robot_face');}
+    else if(robot == 2) {robot1 = this.physics.add.sprite(401, 90, 'robot_face');}
+    else if(robot == 3) {robot1 = this.physics.add.sprite(401, 550, 'robot_face');}
+    else if(robot == 4) {robot1 = this.physics.add.sprite(400, 550, 'robot_face');}
+
+//piques
+    pique1 = this.physics.add.image(500,400, 'pique').setScale(0.10);
+    pique2 = this.physics.add.image(250,300, 'pique').setScale(0.10);
+    pique3 = this.physics.add.image(250,130, 'pique').setScale(0.10);
+    pique4 = this.physics.add.image(250,470, 'pique').setScale(0.10);
+    pique5 = this.physics.add.image(580,550, 'pique').setScale(0.10);
 ////////collisions\\\\\\\\\\\
 
 this.physics.add.collider(player,mur_invisible);
-this.physics.add.collider(player,caisseR);
-this.physics.add.collider(player,caisseV);
-this.physics.add.collider(player,caisseB);
-this.physics.add.collider(player,rocheG);
-this.physics.add.collider(player,fusee);
+this.physics.add.collider(player,rocheM);
+this.physics.add.collider(player,cratere);
+this.physics.add.collider(player, vieup2, hitSoins2, null, this);
+this.physics.add.collider(player, vieup3, hitSoins3, null, this);
+this.physics.add.collider(player, telecsup, hittelec, null, this);
+this.physics.add.collider(player, lampesup, hitlampe, null, this);
+
+this.physics.add.overlap(player, pique1, hitpique1, null, this);
+this.physics.add.overlap(player, pique2, hitpique2, null, this);
+this.physics.add.overlap(player, pique3, hitpique3, null, this);
+this.physics.add.overlap(player, pique4, hitpique4, null, this);
+this.physics.add.overlap(player, pique5, hitpique5, null, this);
+this.physics.add.overlap(player, robot1, hitrobot1, null, this);
 
     }
     update(){
@@ -201,6 +219,25 @@ this.physics.add.collider(player,fusee);
       player.setVelocityY(0);
     }
 
+//////////////déplacement ennemis\\\\\\\\\\\\\\\\\
+
+//robot1
+    if (robot1.x <= 400 && robot1.y <= 90) {
+      robot1.setVelocityY(0);
+      robot1.setVelocityX(130);
+    } else if (robot1.x >= 401 && robot1.y <= 90) {
+      robot1.setFlipX(false);
+      robot1.setVelocityY(130);
+      robot1.setVelocityX(0);
+    } else if (robot1.x >= 401 && robot1.y >= 550) {
+      robot1.setVelocityY(0);
+      robot1.setVelocityX(-130);
+    } else if (robot1.x <= 400 && robot1.y >= 550) {
+      robot1.setFlipX(true);
+      robot1.setVelocityY(-130);
+      robot1.setVelocityX(0);
+    }
+
     //disparition du text arrivée
 
     this.time.addEvent({
@@ -211,6 +248,202 @@ this.physics.add.collider(player,fusee);
         loop: false
     });
 
+        if (player.x<50 && player.y>0 && player.y<600) {
+      spawn = "droite";
+      this.scene.start("depart");
+    }
+        if (player.x>730 && player.y>230 && player.y<310) {
+        if(nbrlampe<1 && nbrrobot>0){
+        text_pas_lampe.setVisible(true);
+        this.time.addEvent({
+            delay: 4000,
+            callback: ()=>{
+                text_pas_lampe.setVisible(false);
+            },
+            loop: false
+        });
+        }
+        else if(nbrlampe>= 1 && nbrrobot<=0){
+            spawn = "gauche";
+            this.scene.start("donjon");
+        }
+
 
     }
+}
+}
+
+//////ajout de pv \\\\\\\\
+function hitSoins2(player, vieup2){
+    vieup2.destroy(true);
+    vie2prise=1;
+    nbrvie+=1;
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+}
+function hitSoins3(player, vieup3){
+    vieup3.destroy(true);
+    vie3prise=1;
+    nbrvie+=1;
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+}
+function hittelec(player, telecsup){
+    telecsup.destroy(true);
+    robot1.destroy(true);
+    telecpris = 1;
+    nbrtelec += 1;
+    nbrrobot -= 1;
+        telec_text.setVisible(true);
+    this.time.addEvent({
+    delay: 3000,
+    callback: ()=>{
+    telec_text.setVisible(false);
+        },
+    loop: false
+    });
+}
+function hitlampe(player, lampesup){
+    lampesup.destroy(true);
+    lampepris = 1;
+    nbrlampe += 1;
+        lampe_text.setVisible(true);
+    this.time.addEvent({
+    delay: 3000,
+    callback: ()=>{
+    lampe_text.setVisible(false);
+        },
+    loop: false
+    });
+}
+function hitrobot1(player, robot1){
+  nbrvie -= 1;
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+  if (spawn == "droite") {player.setPosition(760,300);}
+  if (spawn == "gauche") {player.setPosition(60,300);}
+
+}
+function hitpique1(player, pique1){
+  nbrvie -= 1;
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+  if (spawn == "droite") {player.setPosition(760,300);}
+  if (spawn == "gauche") {player.setPosition(60,300);}
+
+}
+function hitpique2(player, pique2){
+  nbrvie -= 1;
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+  if (spawn == "droite") {player.setPosition(760,300);}
+  if (spawn == "gauche") {player.setPosition(60,300);}
+
+}
+function hitpique3(player, pique3){
+  nbrvie -= 1;
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+  if (spawn == "droite") {player.setPosition(760,300);}
+  if (spawn == "gauche") {player.setPosition(60,300);}
+
+}
+function hitpique4(player, pique4){
+  nbrvie -= 1;
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+  if (spawn == "droite") {player.setPosition(760,300);}
+  if (spawn == "gauche") {player.setPosition(60,300);}
+
+}
+function hitpique5(player, pique5){
+  nbrvie -= 1;
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+  if (spawn == "droite") {player.setPosition(760,300);}
+  if (spawn == "gauche") {player.setPosition(60,300);}
+
 }

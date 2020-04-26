@@ -23,22 +23,15 @@ if (nbrvie == 5) {text_vie.setText('X 5');}
 if (nbrvie == 6) {text_vie.setText('X 6');}
 if (nbrvie == 7) {text_vie.setText('X 7');}
 
-//récupération du pistolet
-
-    this.add.image(380, 5, 'pistolet').setScale(0.75).setOrigin(0,0);
-    pistolet_text = this.add.text(420, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (pistolet_inv == 1) {pistolet_text.setText('X 1')};
-
-
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setScale(0.5).setOrigin(0,0);
     essence_text = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (essence_inv == 1) {essence_text.setText('X 1')};
+if (nbrEssence == 1) {essence_text.setText('X 1')};
 
 // lampe
     this.add.image(80, 5, 'lampe').setScale(0.5).setOrigin(0,0);
     lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (lampe_inv == 1) {lampe_text.setText('X 1')};
+if (nbrlampe == 1) {lampe_text.setText('X 1')};
 
 
 
@@ -89,12 +82,12 @@ if(spawn == "rien"){
 
     //création du terrain
 
-       this.add.image(400,300,'terrain').setDepth(-5);
+       this.add.image(400,300,'donjon').setDepth(-5);
        mur_invisible = this.physics.add.staticGroup();
-       mur_invisible.create(400, 2, 'collide').setVisible(false).setScale(0.15, 0.15); 
-       mur_invisible.create(2, 645, 'collide').setVisible(false).setScale(0.15, 0.15); 
-       mur_invisible.create(0, 350, 'collideC').setVisible(false).setScale(0.1, 0.15); 
-       mur_invisible.create(845, 450, 'collideC').setVisible(false).setScale(0.1, 0.15); 
+       mur_invisible.create(400, 15, 'murhautdj').setVisible(true)//.setScale(0.15, 0.15); 
+       mur_invisible.create(15, 645, 'murhautdj').setVisible(true).setFlipY(true); 
+       mur_invisible.create(15, 350, 'murcotdj').setVisible(true)//.setScale(0.1, 0.15); 
+       mur_invisible.create(790, 450, 'murcotdj').setVisible(true).setFlipY(true)//.setScale(0.1, 0.15); 
 
 
        //placement des torches

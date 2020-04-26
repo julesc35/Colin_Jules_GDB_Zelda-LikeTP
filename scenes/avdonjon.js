@@ -265,7 +265,14 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
         }
         else if(nbrlampe>= 1 && nbrrobot<=0){
             spawn = "gauche";
+            this.time.addEvent({
+            delay: 4000,
+            callback: ()=>{
+                departMusic.mute = true;            
             this.scene.start("donjon");
+            },
+            loop: false
+        });
         }
 
 

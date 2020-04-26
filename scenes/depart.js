@@ -9,14 +9,11 @@ class depart extends Phaser.Scene{
 
     create(){
 
-    //musique
-
-        departMusic = this.sound.add('depart');
-        departMusic.play({volume: 0.2, loop: true});
-
     //placement du texte
     if (arrivee == 0){
         text_arrivee = this.add.text(400,580,'Me voila bloqué sur cette planète sans une goute d\'essence... esperons que je puisse trouver de l\'essence dans le coin...',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(true);
+        departMusic = this.sound.add('depart');
+        departMusic.play({volume: 0.2, loop: false});
     }
 
     //premier lieux visité
@@ -60,8 +57,10 @@ if (pistoletpris == 0){
 
 
 
-    ////////arrivée du joueur\\\\\\\\\\
 
+
+
+    ////////arrivée du joueur\\\\\\\\\\
 if(spawn == "droite"){
     player = this.physics.add.sprite(760, 300, 'joueur').setScale(0.5).setDepth(1);
 }
@@ -119,10 +118,23 @@ if(spawn == "rien"){
 
        //placement des torches
 
+torcheext = this.physics.add.staticGroup()
+torcheext.create(740, 183, 'torcheext').setDepth(1);
+torcheext.create(740, 375, 'torcheext').setDepth(1);
+torcheext.create(136, 180, 'torcheext').setDepth(1);
 
 //placement des objets
+fusee = this.physics.add.staticGroup();
+fusee.create(160,740, 'fusee').setOrigin(0.5,1.45).setSize(200,1).setDepth(2);
 
+caisseB = this.physics.add.staticGroup();
+caisseB.create(270 ,605 ,'caisseB').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
 
+caisseV = this.physics.add.staticGroup();
+caisseV.create(310,605 ,'caisseV').setOrigin(0.5,1.5).setSize(40,1).setDepth(1);
+
+caisseR = this.physics.add.staticGroup();
+caisseR.create(270 ,460 ,'caisseR').setOrigin(0.5,0.5).setSize(40,1);
 
 trouP = this.physics.add.staticGroup();
 trouP.create(470, 440, 'trouP');
@@ -130,18 +142,29 @@ trouP.create(470, 440, 'trouP');
 trouPP = this.physics.add.staticGroup();
 trouPP.create(260, 143, 'trouPP');
 
+rocheG= this.physics.add.staticGroup();
+rocheG.create(515,280, 'rocheG').setScale(0.75).setOrigin(0.65,1.38).setSize(150,15).setDepth(2);
+
 rocheP= this.physics.add.staticGroup();
 rocheP.create(480,285, 'rocheP');
 rocheP.create(607,240, 'rocheP');
 
 ////////text de récupération des items\\\\\\\\
 
+pistolet_text = this.add.text(400,580,'ca fera pas de mal d\'avoir de quoi me défendre, on sait jamais',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+text_vie = this.add.text(400,580,'je sais pas ce que ça fait là mais ca me sera bien utile (vie+1)',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+text_pas_essence = this.add.text(400, 580,'je n\'ai toujours pas l\'essence, je devrais y retourner pour chercher',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
 
 ////////collisions\\\\\\\\\\\
 
 this.physics.add.collider(player,mur_invisible);
+this.physics.add.collider(player,caisseR);
+this.physics.add.collider(player,caisseV);
+this.physics.add.collider(player,caisseB);
 this.physics.add.collider(player,rocheG);
+this.physics.add.collider(player,fusee);
 this.physics.add.collider(player,vieup1, hitSoins1, null, this);
+this.physics.add.collider(player,pistoletsup, hitGun, null, this)
 
     }
 
@@ -177,6 +200,7 @@ this.physics.add.collider(player,vieup1, hitSoins1, null, this);
       player.setVelocityY(0);
     }
 
+
     //disparition du text arrivée
 
     this.time.addEvent({
@@ -189,12 +213,31 @@ this.physics.add.collider(player,vieup1, hitSoins1, null, this);
 
     /////////changer de scene\\\\\\\\\\\\
 
-//retour arriere
+//scene avant le donjon
 
         if (player.x>760 && player.y>0 && player.y<600) {
-      spawn = "droite";
-      this.scene.start("avdonjon");
+      spawn = "gauche";
+       this.scene.start("avdonjon");
     }
+
+//scene finale
+
+    if(player.x>50 && player.x<160 && player.y>480 && player.y<600){
+        if(nbrEssence<1){
+        text_pas_essence.setVisible(true);
+        this.time.addEvent({
+            delay: 4000,
+            callback: ()=>{
+                text_pas_essence.setVisible(false);
+            },
+            loop: false
+        });
+        }
+        if(nbrEssence>= 1){
+            this.scene.start("outro");
+        }
+    }
+
 
 
 
@@ -203,4 +246,38 @@ this.physics.add.collider(player,vieup1, hitSoins1, null, this);
     }
 
 }
+function hitSoins1(player, vieup1){
+    vieup1.destroy(true);
+    vie1prise=1;
+    nbrvie+=1;
+        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
+        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
+        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
+        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
+        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
+        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
+        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
 
+        text_vie.setVisible(true);
+    this.time.addEvent({
+    delay: 3000,
+    callback: ()=>{
+    text_vie.setVisible(false);
+        },
+    loop: false
+    });
+}
+function hitGun(player, pistoletsup){
+pistoletsup.destroy(true);
+pistoletpris =1;
+nbrpistolet +=1;
+
+        pistolet_text.setVisible(true);
+    this.time.addEvent({
+    delay: 3000,
+    callback: ()=>{
+    pistolet_text.setVisible(false);
+        },
+    loop: false
+    });
+}

@@ -38,6 +38,9 @@ var pique5;
 var pique6;
 var pique7;
 var pique8;
+var pique9;
+var pique10;
+var pique11;
 
 //déclaration des objets de décors
 var entredj;
@@ -137,8 +140,9 @@ class Assets extends Phaser.Scene {
 	preload(){
 
 		//fond/terrain
-		this.load.image('GameOver','assets/gameOver.png')
+		this.load.image('GameOver','assets/gameOver.png');
         this.load.image('fond','assets/fondintro.png');
+        this.load.image('fondoutro','assets/fondoutro.png');
         this.load.image('terrain','assets/terrain.png');
         this.load.image('donjon','assets/terrain_donjon.png');
         this.load.image('collide','assets/mur_invisible.png');

@@ -14,7 +14,8 @@ var config = {
     Menu,
     depart,
     avdonjon,
-    donjon]
+    donjon,
+    outro]
   }
 
 var game = new Phaser.Game(config);

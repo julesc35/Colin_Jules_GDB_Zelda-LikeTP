@@ -54,7 +54,7 @@ if (nbrlampe == 1) {lampe_text.setText('X 1')};
 //////placement des items \\\\\\
 
 if (vie2prise == 0) {
-    vieup2 = this.physics.add.image(420,220,'soins').setScale(0.5).setDepth(1);
+    vieup2 = this.physics.add.image(220,350,'soins').setScale(0.5).setDepth(1);
 }
 if (vie3prise == 0) {
     vieup3 = this.physics.add.image(515,220,'soins').setScale(0.5).setDepth(1);
@@ -266,7 +266,7 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
         else if(nbrlampe>= 1 && nbrrobot<=0){
             spawn = "gauche";
             this.time.addEvent({
-            delay: 4000,
+            delay: 10,
             callback: ()=>{
                 departMusic.mute = true;            
             this.scene.start("donjon");

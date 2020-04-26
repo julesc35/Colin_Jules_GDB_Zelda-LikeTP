@@ -79,6 +79,22 @@ var vie3prise = 0;
 var soin;
 var text_nbrvie;
 
+var pistolet_text;
+var nbrpistolet =0;
+var pistoletsup;
+var pistoletpris = 0;
+var pistolet;
+
+var munition_text;
+var munition_inv = 0;
+var munition;
+
+
+var matraque_text;
+var matraque_inv = 0;
+var pistoletpris = 0;
+var matraque;
+
 var telec_text;
 var nbrtelec = 0;
 var telecpris = 0;

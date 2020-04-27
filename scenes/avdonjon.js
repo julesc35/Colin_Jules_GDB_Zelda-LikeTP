@@ -17,7 +17,7 @@ class avdonjon extends Phaser.Scene{
 
 //nombre d'ennemis
 
-nbrrobot = 1
+nbrrobot = 1;
 
 text_pas_lampe = this.add.text(400, 580,'je n\'ai toujours pas la lampe, je devrais retourner la chercher et trouver de quoi désactiver ces robots',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
 lampe_text = this.add.text(400, 580,'ca y est, je vais pouvoir voir entrer',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
@@ -41,13 +41,13 @@ if (nbrvie == 7) {text_vie.setText('X 7');}
 
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setDepth(5).setScale(0.5).setOrigin(0,0);
-    essence_text = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (nbrEssence == 1) {essence_text.setText('X 1')};
+    text_nbrEsence = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
+if (nbrEssence == 1) {text_nbrEsence.setText('X 1')};
 
 // lampe
     this.add.image(80, 5, 'lampe').setDepth(5).setScale(0.5).setOrigin(0,0);
-    lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
-if (nbrlampe == 1) {lampe_text.setText('X 1')};
+    text_nbrlampe = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setDepth(5).setOrigin(0,0);
+if (nbrlampe == 1) {text_nbrlampe.setText('X 1')};
 
 
 
@@ -172,6 +172,11 @@ if(spawn == "rien"){
     pique4 = this.physics.add.image(250,470, 'pique').setScale(0.10);
     pique5 = this.physics.add.image(580,550, 'pique').setScale(0.10);
 
+/////////Text\\\\\\\\\\\\\\
+
+text_vie = this.add.text(400,580,'encore ! ca devrait bien m\'aider ! (vie+1)',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+text_vie = this.add.text(400,580,'voila la lampe, entrons dans cette grotte maintenant !',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+
 ////////collisions\\\\\\\\\\\
 
 this.physics.add.collider(player,mur_invisible);
@@ -263,8 +268,7 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
                 this.scene.start("depart");
                 },
             });
-
-
+        }
         if (player.x>730 && player.y>230 && player.y<310) {
         if(nbrlampe<1 && nbrrobot>0){
         text_pas_lampe.setVisible(true);
@@ -278,21 +282,14 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
         }
         else if(nbrlampe>= 1 && nbrrobot<=0){
             spawn = "gauche";
-            this.time.addEvent({
-            delay: 100,
-            callback: ()=>{
-                departMusic.mute = true;            
+            departMusic.mute = true;                       
             this.scene.start("donjon");
-            },
-            loop: false
-        });
         }
-
-
+        }
     
 }
 }
-}}
+   
 
 //////ajout de pv \\\\\\\\
 
@@ -309,6 +306,14 @@ function hitSoins2(player, vieup2){
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
 
+        text_vie.setVisible(true);
+    this.time.addEvent({
+    delay: 3000,
+    callback: ()=>{
+    text_vie.setVisible(false);
+        },
+    loop: false
+    });
 }
 
 
@@ -323,6 +328,15 @@ function hitSoins3(player, vieup3){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
+        text_vie.setVisible(true);
+    this.time.addEvent({
+    delay: 3000,
+    callback: ()=>{
+    text_vie.setVisible(false);
+        },
+    loop: false
+    });
 }
 
 
@@ -332,7 +346,9 @@ function hittelec(player, telecsup){
     telecpris = 1;
     nbrtelec += 1;
     nbrrobot -= 1;
+
         telec_text.setVisible(true);
+
     this.time.addEvent({
     delay: 3000,
     callback: ()=>{
@@ -347,7 +363,9 @@ function hitlampe(player, lampesup){
     lampesup.destroy(true);
     lampepris = 1;
     nbrlampe += 1;
+if (nbrlampe == 1) {text_nbrlampe.setText('X 1')};
         lampe_text.setVisible(true);
+
     this.time.addEvent({
     delay: 3000,
     callback: ()=>{
@@ -382,12 +400,6 @@ function hitrobot1(player, robot1){
 
 function hitpique1(player, pique1){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -395,6 +407,13 @@ function hitpique1(player, pique1){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -410,13 +429,7 @@ function hitpique2(player, pique2){
     this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
     gameOver=true;
   }
-        if (nbrvie == 1) {text_nbrvie.setText('X 1');}
-        if (nbrvie == 2) {text_nbrvie.setText('X 2');}
-        if (nbrvie == 3) {text_nbrvie.setText('X 3');}
-        if (nbrvie == 4) {text_nbrvie.setText('X 4');}
-        if (nbrvie == 5) {text_nbrvie.setText('X 5');}
-        if (nbrvie == 6) {text_nbrvie.setText('X 6');}
-        if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -426,12 +439,6 @@ function hitpique2(player, pique2){
 
 function hitpique3(player, pique3){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -439,6 +446,13 @@ function hitpique3(player, pique3){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -448,12 +462,6 @@ function hitpique3(player, pique3){
 
 function hitpique4(player, pique4){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -461,6 +469,13 @@ function hitpique4(player, pique4){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -470,12 +485,6 @@ function hitpique4(player, pique4){
 
 function hitpique5(player, pique5){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -483,6 +492,13 @@ function hitpique5(player, pique5){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}

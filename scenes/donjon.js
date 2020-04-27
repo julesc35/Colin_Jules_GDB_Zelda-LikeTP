@@ -32,13 +32,13 @@ if (nbrvie == 7) {text_vie.setText('X 7');}
 
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setScale(0.5).setOrigin(0,0).setDepth(1);
-    essence_text = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0).setDepth(1);
-if (nbrEssence == 1) {essence_text.setText('X 1').setDepth(1)};
+    text_nbrEsence = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0).setDepth(1);
+if (nbrEssence == 1) {text_nbrEsence.setText('X 1').setDepth(1)};
 
 // lampe
     this.add.image(80, 5, 'lampe').setScale(0.5).setOrigin(0,0).setDepth(1);
-    lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0).setDepth(1);
-if (nbrlampe == 1) {lampe_text.setText('X 1').setDepth(1)};
+    text_nbrlampe = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0).setDepth(1);
+if (nbrlampe == 1) {text_nbrlampe.setText('X 1').setDepth(1)};
 
  /////////placement items\\\\\\\\\
 
@@ -235,23 +235,19 @@ function hitessence(player, essencesup){
     essencesup.destroy(true);
     essencepris = 1;
     nbrEssence += 1;
-        essence_text.setVisible(true);
+    if (nbrEssence == 1) {text_nbrEsence.setText('X 1')};
+
+        text_nbrEsence.setVisible(true);
     this.time.addEvent({
     delay: 3000,
     callback: ()=>{
-    essence_text.setVisible(false);
+    text_nbrEsence.setVisible(false);
         },
     loop: false
     });
 }
 function hitrobot2(player, robot2){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -259,6 +255,13 @@ function hitrobot2(player, robot2){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -266,12 +269,6 @@ function hitrobot2(player, robot2){
 }
 function hitpique6(player, pique6){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -279,6 +276,13 @@ function hitpique6(player, pique6){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -286,12 +290,6 @@ function hitpique6(player, pique6){
 }
 function hitpique7(player, pique7){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -299,6 +297,13 @@ function hitpique7(player, pique7){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -306,12 +311,6 @@ function hitpique7(player, pique7){
 }
 function hitpique8(player, pique8){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -319,6 +318,13 @@ function hitpique8(player, pique8){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -326,12 +332,6 @@ function hitpique8(player, pique8){
 }
 function hitpique9(player, pique9){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -339,6 +339,13 @@ function hitpique9(player, pique9){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -346,12 +353,6 @@ function hitpique9(player, pique9){
 }
 function hitpique10(player, pique10){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -359,6 +360,13 @@ function hitpique10(player, pique10){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}
@@ -366,12 +374,6 @@ function hitpique10(player, pique10){
 }
 function hitpique11(player, pique11){
   nbrvie -= 1;
-  if (nbrvie == 0) {
-    this.physics.pause();
-    this.add.image(400,350,'GameOver').setDepth(100);
-    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
-    gameOver=true;
-  }
         if (nbrvie == 1) {text_nbrvie.setText('X 1');}
         if (nbrvie == 2) {text_nbrvie.setText('X 2');}
         if (nbrvie == 3) {text_nbrvie.setText('X 3');}
@@ -379,6 +381,13 @@ function hitpique11(player, pique11){
         if (nbrvie == 5) {text_nbrvie.setText('X 5');}
         if (nbrvie == 6) {text_nbrvie.setText('X 6');}
         if (nbrvie == 7) {text_nbrvie.setText('X 7');}
+  if (nbrvie == 0) {
+    this.physics.pause();
+    this.add.image(400,350,'GameOver').setDepth(100);
+    this.add.text(400, 400, 'Game Over', {fontFamily: 'SpaceQuest', fontSize: 42}).setOrigin(0.5,0.5).setDepth(101);
+    gameOver=true;
+  }
+
 
   if (spawn == "droite") {player.setPosition(760,300);}
   if (spawn == "gauche") {player.setPosition(60,300);}

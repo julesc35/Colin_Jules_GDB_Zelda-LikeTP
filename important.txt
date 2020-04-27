@@ -3,9 +3,6 @@ certains bug n'ont pus être corrigés tels que:
 
 /////////////////__problèmes majeurs__\\\\\\\\\\\\\\\\\\\\
 
-- le changement de scene qui peut être problématique pour le passage de avdonjon à arrivé. cependant lors du passage de cette scene il est possible, si par exemple vous souhaitez passer de "avdonjon" à "arrivee" de vous diriger vers le bord de "avdonjon", lorsque le bug se présente, dirigez vous vers le haut, ce qui peut vous laissez dans la scene souhaité et ensuite appuyez juste une fois sur la touche directionnelle vous faisant retourner vers votre de point de spawn.
-
-le probleme étant que los du changement de scene la vélocité du joueur ne se reset pas et pour l'annuler il faut appuyer sur la touche vous faisant vous diriger dans le sens de cette vélocité
 
 /////////////////__problèmes mineurs__\\\\\\\\\\\\\\\\\\\\
 - le problème d'update de l'inventaire qui ne se fait uniquement au changement de scene après la scene (à l'exception de la scene "arrivee")

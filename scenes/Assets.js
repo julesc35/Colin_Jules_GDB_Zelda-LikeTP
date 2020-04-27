@@ -101,6 +101,7 @@ var telecpris = 0;
 var telecsup;
 
 var essence_text;
+var text_nbrEsence;
 var text_pas_essence;
 var nbrEssence =0;
 var essencesup;
@@ -109,6 +110,7 @@ var essence;
 
 
 var lampe_text;
+var text_nbrlampe;
 var text_pas_lampe;
 var nbrlampe =0;
 var lampesup;

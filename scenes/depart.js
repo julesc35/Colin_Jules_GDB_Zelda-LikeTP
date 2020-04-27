@@ -37,13 +37,13 @@ class depart extends Phaser.Scene{
 
 // essence dans l'inventaire
     this.add.image(180, 5, 'essence').setScale(0.5).setOrigin(0,0);
-    essence_text = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (nbrEssence == 1) {essence_text.setText('X 1')};
+    text_nbrEsence = this.add.text(205, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
+if (nbrEssence == 1) {text_nbrEsence.setText('X 1')};
 
 // lampe
     this.add.image(80, 5, 'lampe').setScale(0.5).setOrigin(0,0);
-    lampe_text = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
-if (nbrlampe == 1) {lampe_text.setText('X 1')};
+    text_nbrlampe = this.add.text(140, 10, 'X0', {fontFamily: 'NebulousRegular', fontSize:15, color:'#FFFF'}).setOrigin(0,0);
+if (nbrlampe == 1) {text_nbrlampe.setText('X 1')};
 
 
 //////placement des items\\\\\
@@ -236,7 +236,13 @@ this.physics.add.collider(player,pistoletsup, hitGun, null, this)
         });
         }
         if(nbrEssence>= 1){
-            this.scene.start("outro");
+                this.time.addEvent({
+                delay: 100,
+                callback: ()=>{
+                departMusic.mute = true;
+                this.scene.start("outro");
+                },
+            });
         }
     }
 

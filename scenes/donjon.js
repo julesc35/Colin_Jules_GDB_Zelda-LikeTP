@@ -47,7 +47,7 @@ if (essencepris == 0){
 }
     ////////arrivée du joueur\\\\\\\\\\
 if(spawn == "droite"){
-    player = this.physics.add.sprite(740, 300, 'joueur').setScale(0.5).setDepth(1);
+    player = this.physics.add.sprite(730, 300, 'joueur').setScale(0.5).setDepth(1);
 }
 if(spawn == "gauche"){
     player = this.physics.add.sprite(80, 300, 'joueur').setScale(0.5).setDepth(1);
@@ -67,7 +67,7 @@ if(spawn == "rien"){
     this.anims.create({
       key:'anim_joueur_droite',
       frames: this.anims.generateFrameNumbers('course_droite', {start: 0, end: 1}),
-      frameRate: 4,
+      frameRate: 2,
       repeat: -1
     });
     this.anims.create({
@@ -79,7 +79,7 @@ if(spawn == "rien"){
     this.anims.create({
       key:'anim_joueur_haut',
       frames: this.anims.generateFrameNumbers('course_dos', {start: 0, end: 1}),
-      frameRate: 4,
+      frameRate: 8,
       repeat: -1
     });
     this.anims.create({
@@ -221,7 +221,7 @@ this.physics.add.overlap(player, robot2, hitrobot2, null, this);
         if (player.x<50 && player.y>0 && player.y<600) {
       spawn = "droite";
             this.time.addEvent({
-            delay: 10,
+            delay: 100,
             callback: ()=>{
                 donjonMusic.mute = true;            
             this.scene.start("avdonjon");

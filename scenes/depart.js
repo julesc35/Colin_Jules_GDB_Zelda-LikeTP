@@ -59,7 +59,7 @@ if (vie1prise == 0) {
 
     ////////arrivée du joueur\\\\\\\\\\
 if(spawn == "droite"){
-    player = this.physics.add.sprite(740, 300, 'joueur').setScale(0.5).setDepth(1);
+    player = this.physics.add.sprite(730, 300, 'joueur').setScale(0.5).setDepth(1);
 }
 if(spawn == "gauche"){
     player = this.physics.add.sprite(80, 300, 'joueur').setScale(0.5).setDepth(1);
@@ -78,7 +78,7 @@ if(spawn == "rien"){
     this.anims.create({
       key:'anim_joueur_droite',
       frames: this.anims.generateFrameNumbers('course_droite', {start: 0, end: 1}),
-      frameRate: 4,
+      frameRate: 2,
       repeat: -1
     });
     this.anims.create({
@@ -90,7 +90,7 @@ if(spawn == "rien"){
     this.anims.create({
       key:'anim_joueur_haut',
       frames: this.anims.generateFrameNumbers('course_dos', {start: 0, end: 1}),
-      frameRate: 4,
+      frameRate: 8,
       repeat: -1
     });
     this.anims.create({
@@ -169,25 +169,25 @@ this.physics.add.collider(player,pistoletsup, hitGun, null, this)
 
 
         /////////configuration des controles\\\\\\\\
-    if (cursors.up.isDown) {
+    if (cursors.up.isDown && cursors.right.isUp && cursors.left.isUp) {
       player.anims.play('anim_joueur_haut', true);
       player.setVelocityY(-175);
       player.setVelocityX(0);
     }
-    else if (cursors.down.isDown) {
+    else if (cursors.down.isDown && cursors.right.isUp && cursors.left.isUp) {
       player.anims.play('anim_joueur_bas', true);
       player.setVelocityY(175);
       player.setVelocityX(0);
     }
-    else if (cursors.right.isDown && cursors.up.isUp && cursors.down.isUp) {
+    else if (cursors.right.isDown) {
+      player.anims.play('anim_joueur_droite', true);   
       player.setVelocityX(225);
       player.setVelocityY(0);
       player.setFlipX(false);
-      player.anims.play('anim_joueur_droite', true);
     }
     else if (cursors.left.isDown) {
-      player.setVelocityX(-225);      
       player.anims.play('anim_joueur_droite', true);
+      player.setVelocityX(-225);
       player.setVelocityY(0);
       player.setFlipX(true);
     }
@@ -214,7 +214,12 @@ this.physics.add.collider(player,pistoletsup, hitGun, null, this)
 
         if (player.x>760 && player.y>0 && player.y<600) {
       spawn = "gauche";
-       this.scene.start("avdonjon");
+                  this.time.addEvent({
+                delay: 100,
+                callback: ()=>{
+                this.scene.start("avdonjon");
+                },
+            });
     }
 
 //scene finale

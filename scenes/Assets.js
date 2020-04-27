@@ -183,8 +183,8 @@ class Assets extends Phaser.Scene {
 
         //joueur
         this.load.spritesheet('joueur','assets/player_face.png', {frameWidth: 106, frameHeight: 128});
-        this.load.spritesheet('course_droite','assets/player_profilsprite.png', {frameWidth: 106, frameHeight: 128});
-        this.load.spritesheet('course_face','assets/player_facemarche.png', {frameWidth: 106, frameHeight: 128});
+        this.load.spritesheet('course_droite','assets/player_profilsprite.png', {frameWidth: 102, frameHeight: 128});
+        this.load.spritesheet('course_face','assets/player_facemarche.png', {frameWidth: 102, frameHeight: 128});
         this.load.spritesheet('course_dos','assets/player_dossprite.png', {frameWidth: 106, frameHeight: 128});
 
         //entitée

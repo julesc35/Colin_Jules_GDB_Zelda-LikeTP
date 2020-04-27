@@ -23,7 +23,7 @@ constructor(){
 
         if (enter.isDown){
             this.time.addEvent({
-                delay: 5000,
+                delay: 100,
                 callback: ()=>{
                 menuMusic.mute = true;
                 this.scene.start("depart");

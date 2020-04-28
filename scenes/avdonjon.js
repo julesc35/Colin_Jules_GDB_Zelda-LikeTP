@@ -117,6 +117,8 @@ if(spawn == "rien"){
     //création du terrain
 
     this.add.image(400,300,'terrain');
+
+
     mur_invisible = this.physics.add.staticGroup();
     mur_invisible.create(400, -30, 'collide').setVisible(false).setScale(0.03, 0.15); 
     mur_invisible.create(2, 645, 'collide').setVisible(false).setScale(0.03, 0.15); 
@@ -128,37 +130,50 @@ if(spawn == "rien"){
 
     entredj = this.physics.add.staticGroup()
     entredj.create(770, 300,'entdj').setDepth(1).setScale(0.35);
-       //placement des torches
+
+
+//placement des torches
+
 
     torcheext = this.physics.add.staticGroup()
     torcheext.create(715, 115, 'torcheext').setDepth(2);
     torcheext.create(710, 350, 'torcheext').setDepth(1);
     torcheext.create(136, 500, 'torcheext').setDepth(1); 
 
+
 //placement des objets
+
+
     cratere = this.physics.add.staticGroup()
     cratere.create(220, 230, 'cratere').setDepth(1).setSize(160, 10).setOrigin(0.5,1.25);
     cratere.create(550,360, 'cratere').setDepth(1).setSize(160, 10).setOrigin(0.5,1.25);
     cratere.create(600, 120, 'cratere').setDepth(1).setSize(160, 10).setOrigin(0.5,1.25);
 
+
     trouP = this.physics.add.staticGroup();
     trouP.create(95, 350, 'trouP').setFlipX(true);
     trouP.create(436, 502, 'trouP');
 
+
     trouPP = this.physics.add.staticGroup();
     trouPP.create(260, 143, 'trouPP');
+
 
     rocheM = this.physics.add.staticGroup();
     rocheM.create(480, 200, 'rocheM').setDepth(1).setSize(85, 10).setOrigin(0.55, 1.30);
     rocheM.create(260, 560, 'rocheM').setDepth(1).setSize(85, 10).setOrigin(0.55, 1.30);
 
+
     rocheP= this.physics.add.staticGroup();
-    rocheP.create(175,150, 'rocheP').setFlipX(true);
+    rocheP.create(150,150, 'rocheP').setFlipX(true);
     rocheP.create(607,450, 'rocheP');
 
 
 ///////////ennemis\\\\\\\\\\\\\
+
+
 //robot 1
+
     robot = Phaser.Math.Between(1,4);
     if(robot == 1) {robot1 = this.physics.add.sprite(400, 90, 'robot_face');}
     else if(robot == 2) {robot1 = this.physics.add.sprite(401, 90, 'robot_face');}
@@ -166,26 +181,36 @@ if(spawn == "rien"){
     else if(robot == 4) {robot1 = this.physics.add.sprite(400, 550, 'robot_face');}
 
 //piques
+
     pique1 = this.physics.add.image(500,400, 'pique').setScale(0.10);
     pique2 = this.physics.add.image(250,300, 'pique').setScale(0.10);
     pique3 = this.physics.add.image(250,130, 'pique').setScale(0.10);
     pique4 = this.physics.add.image(250,470, 'pique').setScale(0.10);
     pique5 = this.physics.add.image(580,550, 'pique').setScale(0.10);
 
+
 /////////Text\\\\\\\\\\\\\\
 
+
 text_vie = this.add.text(400,580,'encore ! ca devrait bien m\'aider ! (vie+1)',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
-text_vie = this.add.text(400,580,'voila la lampe, entrons dans cette grotte maintenant !',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+
+lampe_text = this.add.text(400,580,'voila la lampe, entrons dans cette grotte maintenant !',{ fontFamily: 'NebulousRegular', fontSize: 10}).setOrigin(0.5,0.5).setDepth(5).setVisible(false);
+
 
 ////////collisions\\\\\\\\\\\
 
 this.physics.add.collider(player,mur_invisible);
+
+
 this.physics.add.collider(player,rocheM);
 this.physics.add.collider(player,cratere);
+
+
 this.physics.add.collider(player, vieup2, hitSoins2, null, this);
 this.physics.add.collider(player, vieup3, hitSoins3, null, this);
 this.physics.add.collider(player, telecsup, hittelec, null, this);
 this.physics.add.collider(player, lampesup, hitlampe, null, this);
+
 
 this.physics.add.overlap(player, pique1, hitpique1, null, this);
 this.physics.add.overlap(player, pique2, hitpique2, null, this);
@@ -196,33 +221,39 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
 
     }
     update(){
-    if (cursors.up.isDown) {
+
+    if (cursors.up.isDown)
+     {
       player.anims.play('anim_joueur_haut', true);
       player.setVelocityY(-175);
       player.setVelocityX(0);
     }
 
-    else if (cursors.down.isDown) {
+    else if (cursors.down.isDown)
+     {
       player.anims.play('anim_joueur_bas', true);
       player.setVelocityY(175);
       player.setVelocityX(0);
     }
 
-    else if (cursors.right.isDown) {
+    else if (cursors.right.isDown)
+     {
       player.anims.play('anim_joueur_droite', true);   
       player.setVelocityX(225);
       player.setVelocityY(0);
       player.setFlipX(false);
     }
 
-    else if (cursors.left.isDown) {
+    else if (cursors.left.isDown)
+     {
       player.anims.play('anim_joueur_droite', true);
       player.setVelocityX(-225);
       player.setVelocityY(0);
       player.setFlipX(true);
     }
 
-    else if (cursors.left.isUp && cursors.right.isUp && cursors.up.isUp && cursors.down.isUp) {      
+    else if (cursors.left.isUp && cursors.right.isUp && cursors.up.isUp && cursors.down.isUp)
+     {      
       player.anims.play('anim_joueur_arret', true);
       player.setVelocityX(0);
       player.setVelocityY(0);
@@ -231,20 +262,28 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
 //////////////déplacement ennemis\\\\\\\\\\\\\\\\\
 
 //robot1
-    if (robot1.x <= 400 && robot1.y <= 90) {
+
+    if (robot1.x <= 400 && robot1.y <= 90)
+     {
       robot1.setVelocityY(0);
       robot1.setVelocityX(130);
     } 
-    else if (robot1.x >= 401 && robot1.y <= 90) {
+
+    else if (robot1.x >= 401 && robot1.y <= 90)
+     {
       robot1.setFlipX(false);
       robot1.setVelocityY(130);
       robot1.setVelocityX(0);
     } 
-    else if (robot1.x >= 401 && robot1.y >= 550) {
+
+    else if (robot1.x >= 401 && robot1.y >= 550)
+     {
       robot1.setVelocityY(0);
       robot1.setVelocityX(-130);
     } 
-    else if (robot1.x <= 400 && robot1.y >= 550) {
+
+    else if (robot1.x <= 400 && robot1.y >= 550)
+     {
       robot1.setFlipX(true);
       robot1.setVelocityY(-130);
       robot1.setVelocityX(0);
@@ -260,7 +299,8 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
         loop: false
     });
 
-        if (player.x<50 && player.y>0 && player.y<600) {
+        if (player.x<50 && player.y>0 && player.y<600)
+         {
       spawn = "droite";
                 this.time.addEvent({
                 delay: 100,
@@ -269,8 +309,12 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
                 },
             });
         }
-        if (player.x>730 && player.y>230 && player.y<310) {
-        if(nbrlampe<1 && nbrrobot>0){
+
+
+        if (player.x>730 && player.y>230 && player.y<310)
+         {
+        if(nbrlampe<1 && nbrrobot>0)
+        {
         text_pas_lampe.setVisible(true);
         this.time.addEvent({
             delay: 4000,
@@ -280,7 +324,9 @@ this.physics.add.overlap(player, robot1, hitrobot1, null, this);
             loop: false
         });
         }
-        else if(nbrlampe>= 1 && nbrrobot<=0){
+
+        else if(nbrlampe>= 1 && nbrrobot<=0)
+        {
             spawn = "gauche";
             departMusic.mute = true;                       
             this.scene.start("donjon");

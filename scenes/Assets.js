@@ -1,4 +1,5 @@
 //initialisation des varriables du menu
+
 var text;
 var cursors;
 
@@ -10,11 +11,8 @@ var donjonMusic
 var outroMusic;
 
 //touches
+
 var enter;
-
-//tir
-
-var pressA;
 
 // déclaration joueur et ennemis
 
@@ -25,10 +23,6 @@ var nbrrobot = 0;
 var robot;
 var robot1;
 var robot2;
-var robot3;
-var robot4;
-var robot5;
-
 
 var pique1;
 var pique2;
@@ -42,7 +36,10 @@ var pique9;
 var pique10;
 var pique11;
 
+
 //déclaration des objets de décors
+
+
 var entredj;
 
 var fusee;
@@ -67,7 +64,10 @@ var mur_invisible;
 
 var prendre;
 
+
 //déclaration des items/vie
+
+
 var nbrvie = 4;
 var text_vie;
 var vieup1;
@@ -78,22 +78,6 @@ var vieup3;
 var vie3prise = 0;
 var soin;
 var text_nbrvie;
-
-var pistolet_text;
-var nbrpistolet =0;
-var pistoletsup;
-var pistoletpris = 0;
-var pistolet;
-
-var munition_text;
-var munition_inv = 0;
-var munition;
-
-
-var matraque_text;
-var matraque_inv = 0;
-var pistoletpris = 0;
-var matraque;
 
 var telec_text;
 var nbrtelec = 0;
@@ -117,7 +101,10 @@ var lampesup;
 var lampepris = 0;
 var lampe;
 
+var transition;
 //declaration de la narration
+
+
 var arrivee =0;
 var text_arrivee;
 var essence_manquante;
@@ -141,7 +128,10 @@ class Assets extends Phaser.Scene {
 
 	preload(){
 
+
 		//fond/terrain
+
+
 		this.load.image('GameOver','assets/gameOver.png');
         this.load.image('fond','assets/fondintro.png');
         this.load.image('fondoutro','assets/fondoutro.png');
@@ -154,7 +144,11 @@ class Assets extends Phaser.Scene {
         this.load.image('murhautdj', 'assets/donjon_mur_haut.png');
         this.load.image('murcotdj', 'assets/donjon_mur_coté.png');
 
+
+
         //éléments de décors
+
+
         this.load.image('fusee','assets/fusée.png');
         this.load.image('caisseV','assets/Caisse_verte.png');
         this.load.image('caisseR','assets/Caisse_rouge.png');
@@ -178,20 +172,26 @@ class Assets extends Phaser.Scene {
         this.load.image('PV','assets/Vie.png');
 
 		//ennemis
+
         this.load.spritesheet('robot_face','assets/robot1face.png', {frameWidth: 72, frameHeight: 72});
         this.load.spritesheet('robot_cote','assets/robot1cote.png', {frameWidth: 72, frameHeight: 72});
         this.load.spritesheet('robot_dos','assets/robot1dos.png', {frameWidth: 72, frameHeight: 72});
         this.load.image('pique','assets/piques.png');
 
         //joueur
+
         this.load.spritesheet('joueur','assets/player_face.png', {frameWidth: 106, frameHeight: 128});
         this.load.spritesheet('course_droite','assets/player_profilsprite.png', {frameWidth: 102, frameHeight: 128});
         this.load.spritesheet('course_face','assets/player_facemarche.png', {frameWidth: 102, frameHeight: 128});
         this.load.spritesheet('course_dos','assets/player_dossprite.png', {frameWidth: 106, frameHeight: 128});
 
-        //entitée
-        this.load.image('tir','assets/tir.png');
+
+       //entitée divers
+
+       this.load.spritesheet('transistion','assets/transition.png', {frameWidth: 800 , frameHeight: 600});
+
 	}
+
 
  create(){}
 

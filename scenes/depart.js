@@ -245,7 +245,7 @@ this.physics.add.collider(player,vieup1, hitSoins1, null, this);
     //disparition du text arrivée
 
     this.time.addEvent({
-        delay: 6000,
+        delay: 7000,
         callback: ()=>{
             text_arrivee.setVisible(false);
         },
